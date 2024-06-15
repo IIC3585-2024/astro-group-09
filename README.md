@@ -1,2 +1,4 @@
 # ssr-group-09
-# astro-group-09
+
+npm install
+npx json-server db.json
