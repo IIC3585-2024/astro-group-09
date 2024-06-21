@@ -14,7 +14,7 @@
 <script>
   document.getElementById('filterForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-    const form = event.target;
+    const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     const response = await fetch('/api/filterSeries', {
