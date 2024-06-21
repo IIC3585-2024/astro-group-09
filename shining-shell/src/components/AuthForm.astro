@@ -1,0 +1,31 @@
+---
+const { type } = Astro.props;
+---
+
+<form id="{type}Form">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+
+  <button type="submit">{type === 'login' ? 'Login' : 'Register'}</button>
+</form>
+
+<script>
+  document.getElementById('{type}Form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    const response = await fetch(`/api/${form.id.replace('Form', '')}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    alert(result.message || 'Authentication successful');
+  });
+</script>

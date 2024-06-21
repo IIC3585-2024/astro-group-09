@@ -1,0 +1,17 @@
+---
+import { getSeries } from '../utils/series';
+const series = await getSeries();
+---
+
+<ul>
+  {series.map(serie => (
+    <li key={serie.id}>
+      <h2>{serie.name}</h2>
+      <p>{serie.description}</p>
+      <p>Streaming Service: {serie.streamingService}</p>
+      <p>Seasons: {serie.seasons}</p>
+      <p>Rating: {serie.rating} ({serie.ratingsCount} ratings)</p>
+      <a href={`/series/${serie.id}`}>Details</a>
+    </li>
+  ))}
+</ul>

@@ -1,0 +1,25 @@
+---
+const { id } = Astro.params;
+import { getSeriesById } from '../utils/series';
+const serie = await getSeriesById(parseInt(id));
+---
+
+<article>
+  <h2>{serie.name}</h2>
+  <p>{serie.description}</p>
+  <p>Streaming Service: {serie.streamingService}</p>
+  <p>Seasons: {serie.seasons}</p>
+  <p>Episodes per Season: {serie.episodesPerSeason.join(', ')}</p>
+  <p>Category: {serie.category}</p>
+  <p>Rating: {serie.rating} ({serie.ratingsCount} ratings)</p>
+
+  <h3>Comments:</h3>
+  <ul>
+    {serie.comments.map(comment => (
+      <li key={comment.userId}>
+        <p>{comment.comment}</p>
+        <p>Rating: {comment.rating}</p>
+      </li>
+    ))}
+  </ul>
+</article>

@@ -1,0 +1,9 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SeriesDetails from '../../components/SeriesDetails.astro';
+const { id } = Astro.params;
+---
+
+<Layout>
+  <SeriesDetails id={id} />
+</Layout>

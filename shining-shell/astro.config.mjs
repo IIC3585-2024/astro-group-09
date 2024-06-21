@@ -1,4 +1,7 @@
-import { defineConfig } from 'astro/config';
-
-// https://astro.build/config
-export default defineConfig({});
+export default {
+    integrations: [],
+    buildOptions: {
+      site: 'http://localhost:3000',
+    },
+  };
+  
