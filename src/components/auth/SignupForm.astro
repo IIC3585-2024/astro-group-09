@@ -1,0 +1,63 @@
+---
+import { h } from 'preact';
+
+const handleSubmit = async (event: Event) => {
+  event.preventDefault();
+  const form = event.target as HTMLFormElement;
+  const formData = new FormData(form);
+
+  const response = await fetch('/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: formData.get('username'),
+      password: formData.get('password'),
+    }),
+  });
+
+  if (response.ok) {
+    alert('Signup successful');
+  } else {
+    alert('Signup failed');
+  }
+};
+---
+
+<form id="signup-form">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+  </div>
+  <button type="submit">Sign Up</button>
+</form>
+
+<script>
+  document.getElementById('signup-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const response = await fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: formData.get('username'),
+        password: formData.get('password'),
+      }),
+    });
+
+    if (response.ok) {
+      alert('Signup successful');
+    } else {
+      alert('Signup failed');
+    }
+  });
+</script>

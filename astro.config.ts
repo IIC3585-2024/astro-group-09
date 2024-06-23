@@ -17,4 +17,5 @@ export default defineConfig({
       exclude: ['@resvg/resvg-js'],
     },
   },
+  
 });

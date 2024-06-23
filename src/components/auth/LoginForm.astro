@@ -1,0 +1,67 @@
+---
+import { h } from 'preact';
+
+const handleSubmit = async (event: Event) => {
+  event.preventDefault();
+  const form = event.target as HTMLFormElement;
+  const formData = new FormData(form);
+
+  const response = await fetch('/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: formData.get('username'),
+      password: formData.get('password'),
+    }),
+  });
+
+  if (response.ok) {
+    const { token } = await response.json();
+    localStorage.setItem('token', token);
+    alert('Login successful');
+  } else {
+    alert('Login failed');
+  }
+};
+---
+
+<form id="login-form">
+  <div>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" required />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password" required />
+  </div>
+  <button type="submit">Login</button>
+</form>
+
+<script>
+  document.getElementById('login-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: formData.get('username'),
+        password: formData.get('password'),
+      }),
+    });
+
+    if (response.ok) {
+      const { token } = await response.json();
+      localStorage.setItem('token', token);
+      alert('Login successful');
+    } else {
+      alert('Login failed');
+    }
+  });
+</script>

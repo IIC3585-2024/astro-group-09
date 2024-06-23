@@ -62,17 +62,21 @@ const { pageTitle } = Astro.props;
       }
     </ul>
   </nav>
-  <div class='search-container relative'>
-    <input 
-      type="text" 
-      id="search-input" 
-      placeholder="Search series..." 
-      class="search-input pl-10 pr-4 py-2 border border-gray-300 rounded-lg" 
-    />
-    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-      <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.415l5.386 5.387a1 1 0 01-1.415 1.415l-5.385-5.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd" />
-      </svg>
+  <div class='flex gap-4 items-center'>
+    <a href="/login" class="px-4 py-2 border border-gray-300 rounded-lg text-lg font-medium hover:bg-gray-200 transition-all duration-150 ease-in-out">Login</a>
+    <a href="/signup" class="px-4 py-2 border border-gray-300 rounded-lg text-lg font-medium hover:bg-gray-200 transition-all duration-150 ease-in-out">Signup</a>
+    <div class='search-container relative'>
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Search series..." 
+        class="search-input pl-10 pr-4 py-2 border border-gray-300 rounded-lg" 
+      />
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.415l5.386 5.387a1 1 0 01-1.415 1.415l-5.385-5.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd" />
+        </svg>
+      </div>
     </div>
   </div>
   <nav class='md:hidden flex'>
