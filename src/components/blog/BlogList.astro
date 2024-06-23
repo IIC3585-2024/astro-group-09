@@ -1,0 +1,16 @@
+---
+import seriesData from '../../../data/db.json';
+import BlogSummaryCard from './BlogSummaryCard.astro';
+
+const series = seriesData.series;
+---
+
+<ul class='grid md:grid-cols-2 lg:grid-cols-3 gap-8'>
+  {
+    series.map((serie) => (
+      <li>
+        <BlogSummaryCard series={serie} />
+      </li>
+    ))
+  }
+</ul>

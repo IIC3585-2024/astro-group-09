@@ -1,0 +1,102 @@
+---
+interface Props {
+  pageTitle?: string;
+}
+
+const navigationItems = [
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog/' },
+];
+
+const socialIcons = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/eliancodes/brutal',
+    icon: 'i-uil-github',
+  },
+  {
+    name: 'Twitter',
+    url: 'https://www.twitter.com/eliancodes',
+    icon: 'i-uil-twitter',
+  },
+  { name: 'RSS', url: '/feed.xml', icon: 'i-uil-rss' },
+];
+
+const { pageTitle } = Astro.props;
+---
+
+<header class='border-b-4 border-black flex justify-between p-6 items-center'>
+  {pageTitle && <h1 class='hidden'>{pageTitle}</h1>}
+  <a href='/' title='Back to Home'>
+    <p class='righteous md:text-5xl'>Brutal</p>
+  </a>
+  <nav class='hidden md:inline-block'>
+    <h2 class='hidden'>Navigation</h2>
+    <ul class='flex gap-8 poppins'>
+      {
+        navigationItems.map((item) => (
+          <li>
+            <a
+              class='text-lg font-medium hover:text-green hover:underline transition-all duration-150 ease-in-out'
+              href={item.url}
+              title={`Go to ${item.name}`}
+            >
+              {item.name}
+            </a>
+          </li>
+        ))
+      }
+      {
+        socialIcons.map((item) => (
+          <li>
+            <a
+              href={item.url}
+              class='hover:text-green hover:underline transition-all duration-150 ease-in-out'
+              target='_blank'
+              title={`'See @ElianCodes on ${item.name}`}
+            >
+              <div class:list={[item.icon, 'w-6 h-6']} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <div class='search-container relative'>
+    <input 
+      type="text" 
+      id="search-input" 
+      placeholder="Search series..." 
+      class="search-input pl-10 pr-4 py-2 border border-gray-300 rounded-lg" 
+    />
+    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 111.414-1.415l5.386 5.387a1 1 0 01-1.415 1.415l-5.385-5.387zM8 14a6 6 0 100-12 6 6 0 000 12z" clip-rule="evenodd" />
+      </svg>
+    </div>
+  </div>
+  <nav class='md:hidden flex'>
+    <h2 class='hidden'>Mobile Navigation</h2>
+    <ul>
+      <li><a href='/blog/'>Blog</a></li>
+    </ul>
+  </nav>
+  <style>
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .search-input {
+      width: 200px;
+      padding: 10px;
+      padding-left: 30px; /* extra padding for icon */
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    .search-input::placeholder {
+      color: #999;
+    }
+  </style>
+</header>

@@ -1,0 +1,35 @@
+---
+import { Pill } from '@eliancodes/brutal-ui';
+import SummaryCard from '../generic/SummaryCard.astro';
+import { Button } from '@eliancodes/brutal-ui';
+
+interface Props {
+  series: {
+    id: number;
+    name: string;
+    image: string;
+    description: string;
+    category: string;
+    rating: number;
+    ratingsCount: number;
+  };
+}
+
+const { series } = Astro.props;
+---
+
+<SummaryCard
+  title={series.name}
+  imgAlt={series.name}
+  imgSrc={series.image}
+  description={series.description}
+>
+  <div class='flex justify-end my-4'>
+    <Button href={`/series/${series.id}/`}>Read more &rarr;</Button>
+  </div>
+
+  <div class='hidden sm:inline-block'>
+    <p class='poppins mt-2'>Category: {series.category}</p>
+    <p class='poppins mt-2'>Rating: {series.rating} ({series.ratingsCount} ratings)</p>
+  </div>
+</SummaryCard>

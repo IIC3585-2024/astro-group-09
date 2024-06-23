@@ -1,9 +1,78 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import SeriesDetails from '../../components/SeriesDetails.astro';
+import seriesData from '../../../data/db.json';
+import Layout from '../../layouts/Default.astro';
+
+// Define la función getStaticPaths para pre-renderizar las rutas dinámicas
+export async function getStaticPaths() {
+  return seriesData.series.map(serie => ({
+    params: { id: serie.id.toString() },
+    props: { serie },
+  }));
+}
+
+// Obtiene el parámetro de la URL
 const { id } = Astro.params;
+
+// Maneja el caso donde id es undefined
+if (typeof id !== 'string') {
+  throw new Error(`Invalid ID`);
+}
+
+// Convierte el id a número
+const seriesId = parseInt(id, 10);
+
+// Busca la serie correspondiente por ID
+const serie = seriesData.series.find(serie => serie.id === seriesId);
+
+if (!serie) {
+  throw new Error(`Serie with ID ${id} not found`);
+}
 ---
 
-<Layout>
-  <SeriesDetails id={id} />
+<Layout title={serie.name} description={serie.description}>
+  <main class='p-6 bg-white'>
+    <h1 class='text-2xl font-bold'>{serie.name}</h1>
+    <div class="content-container">
+      <div class="image-container">
+        <img src={serie.image} alt={serie.name} class='image' />
+      </div>
+      <div class="info-container">
+        <p><strong>Streaming Service:</strong> {serie.streamingService}</p>
+        <p><strong>Seasons:</strong> {serie.seasons}</p>
+        <p><strong>Episodes per Season:</strong> {serie.episodesPerSeason.join(', ')}</p>
+        <p><strong>Description:</strong> {serie.description}</p>
+        <p><strong>Category:</strong> {serie.category}</p>
+        <p><strong>Rating:</strong> {serie.rating} ({serie.ratingsCount} ratings)</p>
+      </div>
+    </div>
+  </main>
+  <style>
+    .content-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .image-container {
+      flex: 1 1 300px;
+      max-width: 300px;
+    }
+    .image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .info-container {
+      flex: 2 1 400px;
+    }
+    @media (max-width: 768px) {
+      .content-container {
+        flex-direction: column;
+      }
+      .image-container,
+      .info-container {
+        max-width: 100%;
+      }
+    }
+  </style>
 </Layout>
