@@ -1,11 +1,7 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '@layouts/Default.astro';
-import BlogList from '@components/blog/BlogList.astro';
-
-const posts = await getCollection('blog').then((collection) =>
-  collection.reverse()
-);
+import seriesData from '../../../data/db.json';
+import BlogSummaryCard from '@components/blog/BlogSummaryCard.astro';
 ---
 
 <Layout
@@ -14,6 +10,33 @@ const posts = await getCollection('blog').then((collection) =>
   pageTitle='Brutal Blog'
 >
   <main class='bg-green p-6'>
-    <BlogList posts={posts} />
+    <div id="series-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        seriesData.series.map((serie) => (
+          <div class="serie-item" data-name={serie.name.toLowerCase()}>
+            <BlogSummaryCard series={serie} />
+          </div>
+        ))
+      }
+    </div>
   </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('search-input');
+      const seriesItems = document.getElementsByClassName('serie-item');
+
+      searchInput.addEventListener('input', () => {
+        const filter = searchInput.value.toLowerCase();
+
+        Array.from(seriesItems).forEach(item => {
+          const name = item.getAttribute('data-name');
+          if (name.includes(filter)) {
+            item.classList.remove('hidden');
+          } else {
+            item.classList.add('hidden');
+          }
+        });
+      });
+    });
+  </script>
 </Layout>
