@@ -6,36 +6,98 @@ import BlogSummaryCard from '@components/blog/BlogSummaryCard.astro';
 
 <Layout
   title='Blog'
-  description='Brutal Blog | On this page you can find a collection of blogposts'
+  description='Brutal Blog | On this page you can find a collection of blogposts'
   pageTitle='Brutal Blog'
 >
   <main class='bg-green p-6'>
+    <!-- Filter Controls -->
+    <div class="filter-controls mb-6">
+      <select id="category-select" class="mb-4 p-2 border rounded">
+        <option value="">All Categories</option>
+        <!-- Add your categories here -->
+        <option value="Drama">Drama</option>
+        <option value="Horror">Horror</option>
+        <option value="Fantasy">Fantasy</option>
+        <option value="Sci-Fi">Sci-Fi</option>
+        <option value="Thriller">Thriller</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Mystery">Mystery</option>
+      </select>
+      <select id="service-select" class="mb-4 p-2 border rounded">
+        <option value="">All Services</option>
+        <!-- Add your streaming services here -->
+        <option value="Netflix">Netflix</option>
+        <option value="HBO">HBO</option>
+        <option value="Disney+">Disney+</option>
+        <option value="NBC">NBC</option>
+        <option value="BBC">BBC</option>
+      </select>
+      <select id="rating-select" class="mb-4 p-2 border rounded">
+        <option value="">All Ratings</option>
+        <!-- Add your rating options here -->
+        <option value="9">9 and above</option>
+        <option value="8">8 and above</option>
+        <option value="7">7 and above</option>
+      </select>
+      <button id="clear-filters" class="mb-4 p-2 bg-red-500 text-white rounded">Clear Filters</button>
+    </div>
+
     <div id="series-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         seriesData.series.map((serie) => (
-          <div class="serie-item" data-name={serie.name.toLowerCase()}>
+          <div class="serie-item" data-name={serie.name.toLowerCase()} data-category={serie.category} data-service={serie.streamingService} data-rating={serie.rating}>
             <BlogSummaryCard series={serie} />
           </div>
         ))
       }
     </div>
   </main>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const searchInput = document.getElementById('search-input');
+      const categorySelect = document.getElementById('category-select');
+      const serviceSelect = document.getElementById('service-select');
+      const ratingSelect = document.getElementById('rating-select');
+      const clearFiltersButton = document.getElementById('clear-filters');
       const seriesItems = document.getElementsByClassName('serie-item');
 
-      searchInput.addEventListener('input', () => {
-        const filter = searchInput.value.toLowerCase();
+      const filterSeries = () => {
+        const searchFilter = searchInput.value.toLowerCase();
+        const categoryFilter = categorySelect.value;
+        const serviceFilter = serviceSelect.value;
+        const ratingFilter = ratingSelect.value;
 
         Array.from(seriesItems).forEach(item => {
           const name = item.getAttribute('data-name');
-          if (name.includes(filter)) {
+          const category = item.getAttribute('data-category');
+          const service = item.getAttribute('data-service');
+          const rating = parseFloat(item.getAttribute('data-rating'));
+
+          const matchesSearch = name.includes(searchFilter);
+          const matchesCategory = categoryFilter === "" || category === categoryFilter;
+          const matchesService = serviceFilter === "" || service === serviceFilter;
+          const matchesRating = ratingFilter === "" || rating >= parseFloat(ratingFilter);
+
+          if (matchesSearch && matchesCategory && matchesService && matchesRating) {
             item.classList.remove('hidden');
           } else {
             item.classList.add('hidden');
           }
         });
+      };
+
+      searchInput.addEventListener('input', filterSeries);
+      categorySelect.addEventListener('change', filterSeries);
+      serviceSelect.addEventListener('change', filterSeries);
+      ratingSelect.addEventListener('change', filterSeries);
+
+      clearFiltersButton.addEventListener('click', () => {
+        searchInput.value = '';
+        categorySelect.value = '';
+        serviceSelect.value = '';
+        ratingSelect.value = '';
+        filterSeries();
       });
     });
   </script>
