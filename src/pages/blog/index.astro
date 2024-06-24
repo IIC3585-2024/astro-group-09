@@ -12,9 +12,9 @@ import BlogSummaryCard from '@components/blog/BlogSummaryCard.astro';
   <main class='bg-green p-6'>
     <!-- Filter Controls -->
     <div class="filter-controls mb-6">
+      <input type="text" id="search-input" placeholder="Search by name" class="mb-4 p-2 border rounded">
       <select id="category-select" class="mb-4 p-2 border rounded">
         <option value="">All Categories</option>
-        <!-- Add your categories here -->
         <option value="Drama">Drama</option>
         <option value="Horror">Horror</option>
         <option value="Fantasy">Fantasy</option>
@@ -25,7 +25,6 @@ import BlogSummaryCard from '@components/blog/BlogSummaryCard.astro';
       </select>
       <select id="service-select" class="mb-4 p-2 border rounded">
         <option value="">All Services</option>
-        <!-- Add your streaming services here -->
         <option value="Netflix">Netflix</option>
         <option value="HBO">HBO</option>
         <option value="Disney+">Disney+</option>
@@ -34,7 +33,6 @@ import BlogSummaryCard from '@components/blog/BlogSummaryCard.astro';
       </select>
       <select id="rating-select" class="mb-4 p-2 border rounded">
         <option value="">All Ratings</option>
-        <!-- Add your rating options here -->
         <option value="9">9 and above</option>
         <option value="8">8 and above</option>
         <option value="7">7 and above</option>
@@ -50,6 +48,14 @@ import BlogSummaryCard from '@components/blog/BlogSummaryCard.astro';
           </div>
         ))
       }
+      <!-- Add New Series Button -->
+      <div class="serie-item">
+        <a href="/series/new" class="block border-2 border-dashed border-gray-400 rounded p-4 text-center">
+          <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Añadir Nueva Serie
+          </button>
+        </a>
+      </div>
     </div>
   </main>
 
