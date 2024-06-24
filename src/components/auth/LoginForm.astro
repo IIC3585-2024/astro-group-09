@@ -18,50 +18,25 @@ const handleSubmit = async (event: Event) => {
   });
 
   if (response.ok) {
-    const { token } = await response.json();
-    localStorage.setItem('token', token);
     alert('Login successful');
+    // Optionally, redirect to another page upon successful login
+    // window.location.href = '/dashboard';
   } else {
     alert('Login failed');
   }
 };
 ---
 
-<form id="login-form">
-  <div>
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required />
+<form id="login-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="mb-4">
+    <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+    <input type="text" id="username" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Username" required />
   </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required />
+  <div class="mb-6">
+    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+    <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Password" required />
   </div>
-  <button type="submit">Login</button>
+  <div class="flex items-center justify-between">
+    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Log In</button>
+  </div>
 </form>
-
-<script>
-  document.getElementById('login-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.target as HTMLFormElement;
-    const formData = new FormData(form);
-
-    const response = await fetch('/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: formData.get('username'),
-        password: formData.get('password'),
-      }),
-    });
-
-    if (response.ok) {
-      const { token } = await response.json();
-      localStorage.setItem('token', token);
-      alert('Login successful');
-    } else {
-      alert('Login failed');
-    }
-  });
-</script>

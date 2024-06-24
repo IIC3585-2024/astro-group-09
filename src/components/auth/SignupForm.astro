@@ -1,41 +1,42 @@
-<form id="signup-form">
-  <div>
-    <label for="username">Username</label>
-    <input type="text" id="username" name="username" required />
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" required />
-  </div>
-  <button type="submit">Sign Up</button>
-</form>
+---
+import { h } from 'preact';
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('signup-form');
-    if (form) {
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const formElement = event.target as HTMLFormElement;
-        const formData = new FormData(formElement);
+const handleSubmit = async (event: Event) => {
+  event.preventDefault();
+  const form = event.target as HTMLFormElement;
+  const formData = new FormData(form);
 
-        const response = await fetch('/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: formData.get('username'),
-            password: formData.get('password'),
-          }),
-        });
-
-        if (response.ok) {
-          alert('Signup successful');
-        } else {
-          alert('Signup failed');
-        }
-      });
-    }
+  const response = await fetch('/signup', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      username: formData.get('username'),
+      password: formData.get('password'),
+    }),
   });
-</script>
+
+  if (response.ok) {
+    alert('Signup successful');
+    // Optionally, redirect to another page upon successful signup
+    // window.location.href = '/dashboard';
+  } else {
+    alert('Signup failed');
+  }
+};
+---
+
+<form id="signup-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  <div class="mb-4">
+    <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+    <input type="text" id="username" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Username" required />
+  </div>
+  <div class="mb-6">
+    <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+    <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Password" required />
+  </div>
+  <div class="flex items-center justify-between">
+    <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
+  </div>
+</form>
