@@ -59,6 +59,198 @@
           "rating": 8
         }
       ]
+    },
+    {
+      "id": 3,
+      "name": "Game of Thrones",
+      "image": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
+      "streamingService": "HBO",
+      "seasons": 8,
+      "episodesPerSeason": [10, 10, 10, 10, 10, 10, 7, 6],
+      "description": "Noble families vie for control of the Iron Throne in the mythical land of Westeros.",
+      "category": "Fantasy",
+      "rating": 9.3,
+      "ratingsCount": 2500,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Epic storyline and characters.",
+          "rating": 9
+        },
+        {
+          "userId": 2,
+          "comment": "Disappointed with the final season.",
+          "rating": 8
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "The Mandalorian",
+      "image": "https://m.media-amazon.com/images/M/MV5BN2M5YWFjN2YtYzU2YS00NzBlLTgwZWUtYWQzNWFhNDkyYjg3XkEyXkFqcGdeQXVyMDM2NDM2MQ@@._V1_FMjpg_UX1000_.jpg",
+      "streamingService": "Disney+",
+      "seasons": 3,
+      "episodesPerSeason": [8, 8, 8],
+      "description": "A lone gunfighter makes his way through the outer reaches of the galaxy, far from the authority of the New Republic.",
+      "category": "Sci-Fi",
+      "rating": 8.8,
+      "ratingsCount": 1800,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Great addition to the Star Wars universe.",
+          "rating": 9
+        },
+        {
+          "userId": 2,
+          "comment": "Love the visuals and Baby Yoda!",
+          "rating": 8
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "The Crown",
+      "image": "https://pics.filmaffinity.com/the_crown-838357032-mmed.jpg",
+      "streamingService": "Netflix",
+      "seasons": 4,
+      "episodesPerSeason": [10, 10, 10, 10],
+      "description": "Follows the political rivalries and romance of Queen Elizabeth II's reign and the events that shaped the second half of the twentieth century.",
+      "category": "Drama",
+      "rating": 8.6,
+      "ratingsCount": 1200,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Well-acted and beautifully shot.",
+          "rating": 8
+        },
+        {
+          "userId": 2,
+          "comment": "Engaging portrayal of the British monarchy.",
+          "rating": 9
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "The Witcher",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvO1NcgyWTye15YnoZRt6aNUWc4XXNImzO9g&s",
+      "streamingService": "Netflix",
+      "seasons": 2,
+      "episodesPerSeason": [8, 8],
+      "description": "Geralt of Rivia, a mutated monster-hunter for hire, journeys toward his destiny in a turbulent world where people often prove more wicked than beasts.",
+      "category": "Fantasy",
+      "rating": 8.3,
+      "ratingsCount": 1100,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Captivating and thrilling.",
+          "rating": 9
+        },
+        {
+          "userId": 2,
+          "comment": "Great adaptation of the books and games.",
+          "rating": 8
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Money Heist",
+      "image": "https://www.tallengestore.com/cdn/shop/products/MoneyHeist-NetflixTVShowPosterFanArt_67917fbc-de8e-4228-90a4-217503d7bbd4.jpg?v=1589268514",
+      "streamingService": "Netflix",
+      "seasons": 5,
+      "episodesPerSeason": [13, 9, 8, 8, 10],
+      "description": "A criminal mastermind who goes by 'The Professor' has a plan to pull off the biggest heist in recorded history.",
+      "category": "Thriller",
+      "rating": 8.5,
+      "ratingsCount": 1400,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Intense and full of twists.",
+          "rating": 9
+        },
+        {
+          "userId": 2,
+          "comment": "Brilliant storytelling.",
+          "rating": 8
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "The Office",
+      "image": "https://m.media-amazon.com/images/I/81NK3yCvMJL._AC_UF894,1000_QL80_.jpg",
+      "streamingService": "NBC",
+      "seasons": 9,
+      "episodesPerSeason": [6, 22, 25, 19, 28, 26, 24, 24, 25],
+      "description": "A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.",
+      "category": "Comedy",
+      "rating": 9.0,
+      "ratingsCount": 1600,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Hilarious and heartwarming.",
+          "rating": 9
+        },
+        {
+          "userId": 2,
+          "comment": "Best comedy show ever.",
+          "rating": 9
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Friends",
+      "image": "https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_FMjpg_UX1000_.jpg",
+      "streamingService": "NBC",
+      "seasons": 10,
+      "episodesPerSeason": [24, 24, 25, 24, 24, 25, 24, 24, 24, 18],
+      "description": "Follows the personal and professional lives of six twenty to thirty-something-year-old friends living in Manhattan.",
+      "category": "Comedy",
+      "rating": 8.9,
+      "ratingsCount": 2000,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Timeless classic.",
+          "rating": 10
+        },
+        {
+          "userId": 2,
+          "comment": "Always makes me laugh.",
+          "rating": 9
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Sherlock",
+      "image": "https://m.media-amazon.com/images/M/MV5BMWEzNTFlMTQtMzhjOS00MzQ1LWJjNjgtY2RhMjFhYjQwYjIzXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg",
+      "streamingService": "BBC",
+      "seasons": 4,
+      "episodesPerSeason": [3, 3, 3, 3],
+      "description": "A modern update finds the famous sleuth and his doctor partner solving crime in 21st century London.",
+      "category": "Mystery",
+      "rating": 9.1,
+      "ratingsCount": 1300,
+      "comments": [
+        {
+          "userId": 1,
+          "comment": "Brilliant adaptation and acting.",
+          "rating": 9
+        },
+        {
+          "userId": 2,
+          "comment": "Gripping and clever.",
+          "rating": 8
+        }
+      ]
     }
   ]
 }

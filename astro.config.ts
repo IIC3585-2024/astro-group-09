@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import UnoCSS from 'unocss/astro';
+import preact from '@astrojs/preact';
 
 export default defineConfig({
   // used to generate images
@@ -11,7 +12,7 @@ export default defineConfig({
       ? `https://${process.env.VERCEL_URL}/`
       : 'https://localhost:3000/',
   trailingSlash: 'ignore',
-  integrations: [sitemap(), UnoCSS({ injectReset: true })],
+  integrations: [sitemap(), UnoCSS({ injectReset: true }), preact()],
   vite: {
     optimizeDeps: {
       exclude: ['@resvg/resvg-js'],
