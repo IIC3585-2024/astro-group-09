@@ -2,7 +2,6 @@
   "name": "brutal",
   "version": "1.2.0",
   "private": false,
-  "type": "module",
   "packageManager": "pnpm@8.6.0",
   "author": {
     "name": "Elian Van Cutsem",
@@ -26,8 +25,9 @@
     "astro": "^4.11.0",
     "astro-font": "^0.0.80",
     "body-parser": "^1.20.2",
-    "express": "^4.19.2",
+    "express": "^4.17.1",
     "fs": "^0.0.1-security",
+    "json-server": "^0.17.4",
     "jsonwebtoken": "^9.0.2",
     "preact": "^10.22.0",
     "satori": "^0.5.0",

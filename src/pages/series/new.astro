@@ -2,50 +2,75 @@
 import Layout from '@layouts/Default.astro';
 ---
 
-<Layout
-  title='Añadir Nueva Serie'
-  description='Formulario para añadir una nueva serie'
-  pageTitle='Añadir Nueva Serie'
->
-  <main class='bg-green p-6'>
-    <form id="add-series-form" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="/api/add-series" method="POST">
+<Layout title="Add New Series" description="Add a new series to the database">
+  <main class="bg-white p-6">
+    <h1 class="text-2xl mb-4">Add New Series</h1>
+    <form id="new-series-form" class="bg-gray-100 p-4 rounded">
       <div class="mb-4">
-        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Nombre de la Serie</label>
-        <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nombre de la Serie" required />
+        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+        <input type="text" id="name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
       <div class="mb-4">
-        <label for="image" class="block text-gray-700 text-sm font-bold mb-2">URL de la Imagen</label>
-        <input type="text" id="image" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="URL de la Imagen" required />
+        <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Image URL</label>
+        <input type="text" id="image" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
       <div class="mb-4">
-        <label for="streamingService" class="block text-gray-700 text-sm font-bold mb-2">Servicio de Streaming</label>
-        <input type="text" id="streamingService" name="streamingService" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Servicio de Streaming" required />
+        <label for="streamingService" class="block text-gray-700 text-sm font-bold mb-2">Streaming Service</label>
+        <input type="text" id="streamingService" name="streamingService" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
       <div class="mb-4">
-        <label for="seasons" class="block text-gray-700 text-sm font-bold mb-2">Temporadas</label>
-        <input type="number" id="seasons" name="seasons" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Número de Temporadas" required />
+        <label for="seasons" class="block text-gray-700 text-sm font-bold mb-2">Seasons</label>
+        <input type="number" id="seasons" name="seasons" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
       <div class="mb-4">
-        <label for="episodesPerSeason" class="block text-gray-700 text-sm font-bold mb-2">Episodios por Temporada (Separados por Coma)</label>
-        <input type="text" id="episodesPerSeason" name="episodesPerSeason" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Ej: 10,10,10" required />
+        <label for="episodesPerSeason" class="block text-gray-700 text-sm font-bold mb-2">Episodes Per Season</label>
+        <input type="text" id="episodesPerSeason" name="episodesPerSeason" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
       <div class="mb-4">
-        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Descripción</label>
-        <textarea id="description" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descripción de la Serie" required></textarea>
+        <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description</label>
+        <textarea id="description" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required></textarea>
       </div>
       <div class="mb-4">
-        <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Categoría</label>
-        <input type="text" id="category" name="category" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Categoría" required />
+        <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category</label>
+        <input type="text" id="category" name="category" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
       </div>
-      <div class="mb-4">
-        <label for="rating" class="block text-gray-700 text-sm font-bold mb-2">Calificación</label>
-        <input type="number" step="0.1" id="rating" name="rating" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Calificación" required />
-      </div>
-      <div class="flex items-center justify-between">
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          Añadir Serie
-        </button>
-      </div>
+      <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add Series</button>
     </form>
   </main>
+  <script type="module">
+    document.getElementById('new-series-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const newSeries = {
+        name: formData.get('name'),
+        image: formData.get('image'),
+        streamingService: formData.get('streamingService'),
+        seasons: parseInt(formData.get('seasons')),
+        episodesPerSeason: formData.get('episodesPerSeason').split(',').map(num => parseInt(num)),
+        description: formData.get('description'),
+        category: formData.get('category')
+      };
+      console.log("Adding new series", newSeries)
+      try {
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newSeries),
+        });
+
+        if (response.ok) {
+          window.location.href = '/blog/';
+          alert(`Serie añadida exitosamente.`);
+        } else {
+          const errorData = await response.json();
+          alert(`Failed to add series: ${errorData.error}`);
+        }
+      } catch (error) {
+        alert('Failed to add series: Network error!!!!!!');
+      }
+    });
+  </script>
 </Layout>

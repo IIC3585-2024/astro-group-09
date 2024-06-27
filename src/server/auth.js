@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const fs = require('fs');
 const app = express();
 const PORT = 4321;
@@ -8,34 +9,45 @@ const PORT = 4321;
 const dbFilePath = path.join(__dirname, '../../data/db.json');
 
 app.use(bodyParser.json());
-app.post('/signup', (req, res) => {
-  const { username, password } = req.body;
 
-  // Leer el archivo db.json
-  fs.readFile(dbFilePath, 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: 'Error reading database' });
-      return;
-    }
+app.post('/', async (req, res) => {
+  const { name, image, streamingService, seasons, episodesPerSeason, description, category } = req.body;
+  console.log('New series creation in process');
 
-    try {
-      const db = JSON.parse(data);
+  try {
+    // Leer el archivo db.json
+    const data = await fs.readFile(dbFilePath, 'utf8');
+    const db = JSON.parse(data);
 
-      // Verificar si existe el usuario y la contraseña
-      const user = db.users.find((user) => user.username === username && user.password === password);
-      if (!user) {
-        res.status(401).json({ error: 'Invalid username or password' });
-        return;
-      }
+    // Generar un nuevo ID para la serie
+    const newSeriesId = db.series.length + 1;
 
-      res.json({ message: 'Signup successful', user });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Error parsing database' });
-    }
-  });
+    // Crear el objeto de la nueva serie
+    const newSeries = {
+      id: newSeriesId,
+      name,
+      image,
+      streamingService,
+      seasons: parseInt(seasons),
+      episodesPerSeason: episodesPerSeason.split(',').map(Number),
+      description,
+      category
+    };
+
+    // Agregar la nueva serie al arreglo existente
+    db.series.push(newSeries);
+
+    // Guardar el archivo db.json actualizado
+    await fs.writeFile(dbFilePath, JSON.stringify(db, null, 2));
+
+    // Redirigir de vuelta a la página principal de blog
+    res.redirect('http://localhost:4321/blog/');
+  } catch (error) {
+    console.error('Error handling add series:', error);
+    res.status(500).json({ error: 'Error handling add series' });
+  }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
